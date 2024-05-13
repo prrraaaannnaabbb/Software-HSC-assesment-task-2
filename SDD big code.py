@@ -5,6 +5,7 @@ from tkinter import ttk
 #Setup
 root = customtkinter.CTk()
 
+print("hello")
 
 root.title("SDD Task 2")  
 root.geometry("600x600")   
