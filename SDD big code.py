@@ -5,40 +5,80 @@ from tkinter import ttk
 #Setup
 root = customtkinter.CTk()
 
-print("hello")
-
 root.title("SDD Task 2")  
 root.geometry("600x600")   
 root.minsize(600,600)
 
-
-#mainframe layout
-frame = customtkinter.CTkFrame(master=root,fg_color="blue")
-frame.grid(row = 500, column=50) 
-Recognizing_shapes_frame = customtkinter.CTkFrame(master=root, width=100, height=300)
+#define grid 
+root.columnconfigure((0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17), weight = 10, uniform = "a")
+root.rowconfigure((0,1,2,3,4,5,6,7), weight = 10, uniform="a")
 
 
 
-# #menu/page switching
-def tab1():
+
+#main menu
+def tab1(): 
+    #Lessons_page
     def tab2():
         label1.destroy()
-        button_1.destroy() 
-        label_2 = Label(root, text="second page", font =("Arial", 70))
-        label_2.grid(row= 20, column=50)    
+        button_Lessons.destroy()  
+        button_Quiz.destroy()
+        label_2 = Label(root, text="Lessons", font =("Arial", 60))
+        label_2.grid(column=2, row=0, columnspan = 12)      
         def back():
             label_2.destroy()
-            button_2.destroy() 
+            backb1.destroy() 
             tab1()
-        button_2 = Button(root, text="Back", font=("Arial", 25), command=back) 
-        button_2.grid(row= 20, column=50)  
-    label1 = Label(root, text="Recognizing shapes", font=("Arial", 70))
-    label1.grid(row= 20, column=50)  
+        backb1 = Button(root, text="Back", font=("Arial", 25), command=back) 
+        backb1.grid(column=0, row =0, columnspan = 4)  
 
-    button_1 = Button(root, text="start", font=("Arial", 25), command=tab2) 
-    button_1.grid(row= 20, column=50)  
-tab1()    
 
+
+
+
+        #Lessons buttons opening thier respective lesson
+        button_triangles = Button(root, text="Triangles", font=("Arial", 25)) 
+        button_triangles.grid(column=4, row =1, columnspan= 4) 
+
+        button_quads = Button(root, text="Qudrilaterals", font=("Arial", 25)) 
+        button_quads.grid(column=8, row =1, columnspan= 4) 
+
+        button_polygons = Button(root, text="Polygons", font=("Arial", 25)) 
+        button_polygons.grid(column=4, row =2, columnspan= 4) 
+
+        button_non_polygon = Button(root, text="Non-Polygons", font=("Arial", 25)) 
+        button_non_polygon.grid(column=8, row =2, columnspan= 4) 
+    
+
+
+
+
+    label1 = Label(root, text="Recognizing shapes", font=("Arial", 60))
+    label1.grid(column=3, row=0, columnspan = 12)    
+
+    button_Lessons = Button(root, text="Lessons", font=("Arial", 25), command=tab2) 
+    button_Lessons.grid(column=6, row =1, columnspan= 4)  
+
+
+
+
+    #Quiz_page
+    def tab3(): 
+        label1.destroy()
+        button_Lessons.destroy() 
+        button_Quiz.destroy() 
+        label_3rdpage = Label(root, text="Quiz!!", font =("Arial", 60))
+        label_3rdpage.grid(column=3, row=0, columnspan = 12)     
+        def back(): 
+            label_3rdpage.destroy()
+            backb2.destroy() 
+            tab1() 
+        backb2 = Button(root, text="Back", font=("Arial", 25), command=back) 
+        backb2.grid(column=0, row =0, columnspan = 4)   
+          
+    button_Quiz = Button(root, text="Quiz!", font=("Arial", 25), command=tab3) 
+    button_Quiz.grid(column=8, row=1, columnspan = 4)    
+tab1()      
 
 
 
