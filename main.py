@@ -3,7 +3,7 @@ import customtkinter
 
 
 # Setup
-customtkinter.set_appearance_mode("dark")
+customtkinter.set_appearance_mode("light")
 root = customtkinter.CTk()
 
 root.title("SDD Task 2")
@@ -14,6 +14,8 @@ root.minsize(600, 600)
 # Define grid
 root.columnconfigure(list(range(18)), weight=10, uniform="a")
 root.rowconfigure(list(range(8)), weight=10, uniform="a")
+
+
 
 
 
@@ -31,6 +33,7 @@ def tab_main_menu_widgets():
            
     button_Quiz = Button(root, text="Quiz!", font=("Arial", 25), command=tab_Quiz_menu) 
     button_Quiz.grid(column=8, row=1, columnspan = 4)   
+
 
 
 
@@ -108,7 +111,7 @@ def tab_Quiz_menu():
     
 
 
-#Quiz 1 exam 
+#Quiz 1 exam page
 def tabquiz1(): 
     global label_q1page
     label_3rdpage.destroy() 
@@ -125,7 +128,34 @@ def tabquiz1():
     backb3.grid(column=0, row =0, columnspan = 4)
 
     
-        
+    
+    #Quiz Exam 
+    quiz_data = [
+    {
+        "question": "How many degrees in square",
+        "choices": ["Paris", "London", "Berlin", "360"],
+        "answer": "360"
+    },
+    {
+        "question": "How many degrees in triangle",
+        "choices": ["Jupiter", "Saturn", "Mars", "180"],
+        "answer": "180"
+    },
+    {
+        "question": "What a trangle 3 sided",
+        "choices": ["Go", "Au", "Ag", "yes"],
+        "answer": "yes"
+    },
+    {
+        "question": "Is a square a quadrilatera",
+        "choices": ["China", "Japan", "yes", "Thailand"],
+        "answer": "yes"
+    }
+    # Add more questions here
+    ]
+
+
+
 
 
 
@@ -136,6 +166,15 @@ def tabquiz1():
 def tab_main_menu(): 
     tab_main_menu_widgets()
 tab_main_menu()
+
+
+
+
+
+
+
+
+
 
 
 
