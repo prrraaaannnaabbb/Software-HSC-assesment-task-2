@@ -2,10 +2,11 @@ from tkinter import *
 import customtkinter
 from PIL import ImageTk,Image 
 import ttkbootstrap as tb
-from ttkbootstrap.scrolled import ScrolledText
+from ttkbootstrap.scrolled import ScrolledFrame
+from Lesson_information_Triangles import Triangles_data 
 
 # Setup
-customtkinter.set_appearance_mode("light")
+customtkinter.set_appearance_mode("dark")
 root = customtkinter.CTk()
 
 root.title("SDD Task 2")
@@ -49,11 +50,26 @@ def Triangle_lesson():
        button_quads.destroy() 
        button_polygons.destroy() 
        backb1.destroy()
+
        # These labels are place holders for the  actual images 
        label_placeholder1 = Label(root, text="Image 1", font =("Arial", 50)) 
-       label_placeholder1. grid(row=3, column =4, columnspan=12) 
-       Triangle_text = ScrolledText(root, height=50, width=150, wrap=WORD, bootstyle="danger") 
-       Triangle_text.grid(row=6, column=4, columnspan = 10, rowspan =5)
+       label_placeholder1. grid(row=2, column =3, columnspan=12) 
+
+       #Lesson information scorallable frame
+       Triangle_text_frame = ScrolledFrame(root, height=700, width=800) 
+       Triangle_text_frame.grid(row=4, column=3, columnspan = 12, rowspan =10) 
+
+       Info_label_Triagnle = Label(Triangle_text_frame, text = Triangles_data , font=("Arial", 30), wraplength=770)
+       Info_label_Triagnle.grid(row=0, column=0) 
+
+       #Next and previous button to switch between lesson information 
+       button_nextinfo_triangles = Button(root, text=("--->"), font=("Arial", 30))
+       button_nextinfo_triangles.grid(row=3, column=16) 
+       
+       button_previousinfo_triangles = Button(root, text=("<---"), font=("Arial", 30)) 
+       button_previousinfo_triangles.grid(row=3, column=1)  
+
+
 
 
 def quads_lesson(): 
@@ -66,12 +82,6 @@ def non_Polygons_lesson():
     pass
                     
                
-
-
-
-
-
-
 
 
 
@@ -169,19 +179,19 @@ def tabquiz1():
 
     
     
-  
-
-
-
-
-
-
-
-
 #main menu
 def tab_main_menu(): 
     tab_main_menu_widgets()
 tab_main_menu()
+
+
+
+
+
+
+
+
+
 
 
 
