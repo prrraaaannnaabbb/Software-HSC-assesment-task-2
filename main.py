@@ -1,7 +1,5 @@
 from tkinter import *
 import customtkinter
-from PIL import ImageTk,Image 
-import ttkbootstrap as tb
 from ttkbootstrap.scrolled import ScrolledFrame
 from Triangles_data1 import Triangles1
 from Triangles_data2 import Triangles2
@@ -45,11 +43,38 @@ def tab_main_menu_widgets():
 
 
 
+#Trangles lesson part2 
+def Triangle_info_part_2(): 
+             Triangle_text_frame.destroy()
+             label_placeholder1.destroy()
+
+             label_placeholder2 = Label(root, text="Isosceles triangle", font =("Arial", 50)) 
+             label_placeholder2. grid(row=2, column =3, columnspan=12) 
+
+             Triangle_text_frame2 = ScrolledFrame(root, height=700, width=800) 
+             Triangle_text_frame2.grid(row=4, column=3, columnspan = 12, rowspan =10) 
+
+             Info_label2 = Label(Triangle_text_frame2, text = Triangles2 , font=("Arial", 50), wraplength=770)
+             Info_label2.grid(row=0, column=0)  
+             
+             def Triangleback(): 
+                   button_previousinfo_triangles.destroy() 
+                   Triangle_text_frame2.destroy()  
+                   label_placeholder2.destroy()
+                   Triangle_lesson()
+
+             button_previousinfo_triangles = Button(root, text=("<---"), font=("Arial", 30),command = Triangleback) 
+             button_previousinfo_triangles.grid(row=3, column=1) 
+
+
+
+
+
 
 
 #Triangles lesson 
 def Triangle_lesson(): 
-       global Triangle_text_frame 
+       global Triangle_text_frame, label_placeholder1
        label_2.destroy() 
        button_triangles.destroy() 
        button_non_polygon.destroy() 
@@ -70,43 +95,12 @@ def Triangle_lesson():
        Info_label_Triangle.grid(row=0, column=0)   
 
 
-
-       def Triangle_info_part_2(): 
-             Triangle_text_frame.destroy()
-             Triangle_text_frame2 = ScrolledFrame(root, height=700, width=800) 
-             Triangle_text_frame2.grid(row=4, column=3, columnspan = 12, rowspan =10) 
-
-             Info_label2 = Label(Triangle_text_frame2, text = Triangles2 , font=("Arial", 50), wraplength=770)
-             Info_label2.grid(row=0, column=0)  
-
-
-             def Triangleback(): 
-                   button_previousinfo_triangles.destroy() 
-                   Triangle_text_frame2.destroy()  
-
-                   Triangle_text_frame = ScrolledFrame(root, height=700, width=800) 
-                   Triangle_text_frame.grid(row=4, column=3, columnspan = 12, rowspan =10) 
-
-                   Info_label_Triangle = Label(Triangle_text_frame, text = Triangles1 , font=("Arial", 30), wraplength=770)
-                   Info_label_Triangle.grid(row=0, column=0)  
-
-
-
-             button_previousinfo_triangles = Button(root, text=("<---"), font=("Arial", 30),command = Triangleback) 
-             button_previousinfo_triangles.grid(row=3, column=1)      
-   
              
-
-
-
-
-
-
        #Next and previous button to switch between lesson information 
        button_nextinfo_triangles = Button(root, text=("--->"), font=("Arial", 30), command = Triangle_info_part_2)
        button_nextinfo_triangles.grid(row=3, column=16) 
        
-       
+
 
 
 
