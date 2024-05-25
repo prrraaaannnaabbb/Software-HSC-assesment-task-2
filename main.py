@@ -1,6 +1,8 @@
 from tkinter import *
 import customtkinter
-
+from PIL import ImageTk,Image 
+import ttkbootstrap as tb
+from ttkbootstrap.scrolled import ScrolledText
 
 # Setup
 customtkinter.set_appearance_mode("light")
@@ -13,9 +15,12 @@ root.minsize(600, 600)
 
 # Define grid
 root.columnconfigure(list(range(18)), weight=10, uniform="a")
-root.rowconfigure(list(range(8)), weight=10, uniform="a")
+root.rowconfigure(list(range(12)), weight=10, uniform="a")
 
 
+# main_path = path.dirname(path.abspath(_file_)) 
+# assests_path = path.join(main_path,"assests") 
+# picture1_path = path.join(assests_path, "picture1.jpg")
 
 
 
@@ -36,12 +41,50 @@ def tab_main_menu_widgets():
 
 
 
+#Each indiviudual lesson 
+def Triangle_lesson(): 
+       label_2.destroy() 
+       button_triangles.destroy() 
+       button_non_polygon.destroy() 
+       button_quads.destroy() 
+       button_polygons.destroy() 
+       backb1.destroy()
+       # These labels are place holders for the  actual images 
+       label_placeholder1 = Label(root, text="Image 1", font =("Arial", 50)) 
+       label_placeholder1. grid(row=3, column =4, columnspan=12) 
+       Triangle_text = ScrolledText(root, height=50, width=150, wrap=WORD, bootstyle="danger") 
+       Triangle_text.grid(row=6, column=4, columnspan = 10, rowspan =5)
+
+
+def quads_lesson(): 
+    pass
+
+def Polygons_lesson(): 
+    pass 
+
+def non_Polygons_lesson(): 
+    pass
+                    
+               
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 #Lessons_page
 def tab_Lesson_menu():
-    global label_2, button_triangles, button_quads, button_non_polygon, button_polygons
+    global label_2, button_triangles, button_quads, button_non_polygon, button_polygons, backb1
     label1.destroy()
     button_Lessons.destroy()  
     button_Quiz.destroy()
@@ -59,7 +102,7 @@ def tab_Lesson_menu():
     backb1.grid(column=0, row =0, columnspan = 4)  
 
     #Lessons buttons opening their respective lesson
-    button_triangles = Button(root, text="Triangles", font=("Arial", 25)) 
+    button_triangles = Button(root, text="Triangles", font=("Arial", 25), command = Triangle_lesson) 
     button_triangles.grid(column=4, row =1, columnspan= 4) 
 
     button_quads = Button(root, text="Quadrilaterals", font=("Arial", 25)) 
@@ -70,9 +113,6 @@ def tab_Lesson_menu():
 
     button_non_polygon = Button(root, text="Non-Polygons", font=("Arial", 25)) 
     button_non_polygon.grid(column=8, row =2, columnspan= 4) 
-
-
-
 
 
 
@@ -129,31 +169,7 @@ def tabquiz1():
 
     
     
-    #Quiz Exam 
-    quiz_data = [
-    {
-        "question": "How many degrees in square",
-        "choices": ["Paris", "London", "Berlin", "360"],
-        "answer": "360"
-    },
-    {
-        "question": "How many degrees in triangle",
-        "choices": ["Jupiter", "Saturn", "Mars", "180"],
-        "answer": "180"
-    },
-    {
-        "question": "What a trangle 3 sided",
-        "choices": ["Go", "Au", "Ag", "yes"],
-        "answer": "yes"
-    },
-    {
-        "question": "Is a square a quadrilatera",
-        "choices": ["China", "Japan", "yes", "Thailand"],
-        "answer": "yes"
-    }
-    # Add more questions here
-    ]
-
+  
 
 
 
@@ -166,14 +182,6 @@ def tabquiz1():
 def tab_main_menu(): 
     tab_main_menu_widgets()
 tab_main_menu()
-
-
-
-
-
-
-
-
 
 
 
