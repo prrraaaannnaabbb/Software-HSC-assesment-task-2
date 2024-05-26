@@ -11,11 +11,24 @@ from Square_data2 import Square2
 
 # Setup
 customtkinter.set_appearance_mode("light")
-root = customtkinter.CTk()
+root = customtkinter.CTk() 
+
+app_width = 600 
+app_height = 600
+
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
+x = (screen_width / 2) - (app_width / 2)
+y = (screen_height / 2) - (app_height / 2)
+
+root.geometry(f'{app_width}x{app_height}+{int(x)}+{int(y)}')
 
 root.title("SDD Task 2")
 root.geometry("600x600")
 root.minsize(600, 600)
+
+
 
 
 # Define grid
@@ -26,6 +39,23 @@ root.rowconfigure(list(range(12)), weight=10, uniform="a")
 
 
 #inclusivity features 
+
+# Theme Change Functions
+def update_widget_colors(bg, fg, entry_bg, button_bg, button_fg):
+    for widget in root.winfo_children():
+        if isinstance(widget, Label):
+            widget.config(bg=bg, fg=fg)
+        elif isinstance(widget, Entry):
+            widget.config(bg=entry_bg, fg=fg)
+        elif isinstance(widget, Button):
+            widget.config(bg=button_bg, fg=button_fg)
+        elif isinstance(widget, ScrolledFrame):
+            for subwidget in widget.winfo_children():
+                subwidget.config(bg=bg, fg=fg)
+    root.update() 
+
+
+
 
 
 
@@ -40,160 +70,41 @@ file_menu.add_command(label="Exit", command=root.quit)
 
 
 
-#The following functions are for the inclusivity features:
 def beige_theme():
-    root.config(bg="#F5E0C0")  # Change background color to beige using hexadecimal color code
-    sum_label.config(bg="#EE9E8D", fg="black")  # Change sum_label colors
-    first_term_label.config(bg="#F5E0C0", fg="black")
-    common_difference_label.config(bg="#F5E0C0", fg="black")
-    common_ratio_label.config(bg="#F5E0C0", fg="black")
-    num_terms_label.config(bg="#F5E0C0", fg="black")
-    arithmetic_radio.config(bg="#F5E0C0", fg="black")
-    geometric_radio.config(bg="#F5E0C0", fg="black")
-    first_term_entry.config(bg="#D9CCA2", fg="black")  # Using a different color for entry fields
-    common_difference_entry.config(bg="#D9CCA2", fg="black")
-    common_ratio_entry.config(bg="#D9CCA2", fg="black")
-    num_terms_entry.config(bg="#D9CCA2", fg="black")
-    calculate_button.config(bg="#BEEEA0", fg="black")  # Using a different color for the button
-    clear_button.config(bg="#BEEEA0", fg="black")  # Adding color for the Clear button
-    root.update()  # Update the GUI to reflect the color changes
+    root.config(bg="#F5E0C0")
+    update_widget_colors("#F5E0C0", "black", "#D9CCA2", "#BEEEA0", "black")   
 
 def navy_theme():
-    root.config(bg="#2C3E50")  # Change background color using hexadecimal color code
-    sum_label.config(bg="#2C3E50", fg="white")  # Change sum_label colors
-    first_term_label.config(bg="#2C3E50", fg="white")
-    common_difference_label.config(bg="#2C3E50", fg="white")
-    common_ratio_label.config(bg="#2C3E50", fg="white")
-    num_terms_label.config(bg="#2C3E50", fg="white")
-    arithmetic_radio.config(bg="#2C3E50", fg="white")
-    geometric_radio.config(bg="#2C3E50", fg="white")
-    first_term_entry.config(bg="#34495E", fg="white")  # Using a different color for entry fields
-    common_difference_entry.config(bg="#34495E", fg="white")
-    common_ratio_entry.config(bg="#34495E", fg="white")
-    num_terms_entry.config(bg="#34495E", fg="white")
-    calculate_button.config(bg="#E74C3C", fg="white")  # Using a different color for the button
-    clear_button.config(bg="#E74C3C", fg="white")  # Adding color for the Clear button
-    root.update()  # Update the GUI to reflect the color changes  
+    root.config(bg="#2C3E50")
+    update_widget_colors("#2C3E50", "white", "#34495E", "#E74C3C", "white")
 
 def burgundy_theme():
-    root.config(bg="#800020")  # Background color 
-    sum_label.config(bg="#672F25", fg="white")  # Adjust sum_label colors
-    first_term_label.config(bg="#672F25", fg="white")
-    common_difference_label.config(bg="#672F25", fg="white")
-    common_ratio_label.config(bg="#672F25", fg="white")
-    num_terms_label.config(bg="#672F25", fg="white")
-    arithmetic_radio.config(bg="#672F25", fg="white")
-    geometric_radio.config(bg="#672F25", fg="white")
-    first_term_entry.config(bg="grey", fg="black")  # Using a different color for entry fields
-    common_difference_entry.config(bg="grey", fg="black")
-    common_ratio_entry.config(bg="grey", fg="black")
-    num_terms_entry.config(bg="grey", fg="black")
-    calculate_button.config(bg="#c4a747", fg="black")  # Using a different color for the button
-    clear_button.config(bg="#c4a747", fg="black")  # Adding color for the Clear button
-    root.update()  # Update the GUI to reflect the color changes 
+    root.config(bg="#800020")
+    update_widget_colors("#672F25", "white", "grey", "#c4a747", "black")
 
 def light_aqua_theme():
-    root.config(bg="#A2C4C9")  # Background color inspired by 
-    sum_label.config(bg="#A2C4C9", fg="black")  # Adjust sum_label colors
-    first_term_label.config(bg="#A2C4C9", fg="black")
-    common_difference_label.config(bg="#A2C4C9", fg="black")
-    common_ratio_label.config(bg="#A2C4C9", fg="black")
-    num_terms_label.config(bg="#A2C4C9", fg="black")
-    arithmetic_radio.config(bg="#A2C4C9", fg="black")
-    geometric_radio.config(bg="#A2C4C9", fg="black")
-    first_term_entry.config(bg="grey", fg="black")  # Using a different color for entry fields
-    common_difference_entry.config(bg="grey", fg="black")
-    common_ratio_entry.config(bg="grey", fg="black")
-    num_terms_entry.config(bg="grey", fg="black")
-    calculate_button.config(bg="#8FCACF", fg="black")  # Using a different color for the button
-    clear_button.config(bg="#8FCACF", fg="black")  # Adding color for the Clear button
-    root.update()  # Update the GUI to reflect the color changes
+    root.config(bg="#A2C4C9")
+    update_widget_colors("#A2C4C9", "black", "grey", "#8FCACF", "black")
 
 def botanical_theme():
-    root.config(bg="#446725")  # Background color inspired 
-    sum_label.config(bg="#D0E2C8", fg="black")  # Adjust sum_label colors
-    first_term_label.config(bg="#D0E2C8", fg="black")
-    common_difference_label.config(bg="#D0E2C8", fg="black")
-    common_ratio_label.config(bg="#D0E2C8", fg="black")
-    num_terms_label.config(bg="#D0E2C8", fg="black")
-    arithmetic_radio.config(bg="#D0E2C8", fg="black")
-    geometric_radio.config(bg="#D0E2C8", fg="black")
-    first_term_entry.config(bg="#F2F7EF", fg="black")  # Lighter color for entry fields
-    common_difference_entry.config(bg="#F2F7EF", fg="black")
-    common_ratio_entry.config(bg="#F2F7EF", fg="black")
-    num_terms_entry.config(bg="#F2F7EF", fg="black")
-    calculate_button.config(bg="#D198C0", fg="#4F2743")  # Using a different color for the button
-    clear_button.config(bg="#D198C0", fg="#4F2743")  # Adding color for the Clear button
-    root.update()  # Update the GUI to reflect the color changes 
+    root.config(bg="#446725")
+    update_widget_colors("#D0E2C8", "black", "#F2F7EF", "#D198C0", "#4F2743")
 
 def dark_theme():
-    root.config(bg="#7F7C7E")  # Lighter background color
-    sum_label.config(bg="#333333", fg="white")  # Darker color for sum_label
-    first_term_label.config(bg="#333333", fg="white")  # Swapped label colors
-    common_difference_label.config(bg="#333333", fg="white")
-    common_ratio_label.config(bg="#333333", fg="white")
-    num_terms_label.config(bg="#333333", fg="white")
-    arithmetic_radio.config(bg="#333333", fg="white")
-    geometric_radio.config(bg="#333333", fg="white")
-    first_term_entry.config(bg="white", fg="black")  # Lighter color for entry fields
-    common_difference_entry.config(bg="white", fg="black")
-    common_ratio_entry.config(bg="white", fg="black")
-    num_terms_entry.config(bg="white", fg="black")
-    calculate_button.config(bg="#ADD8E6", fg="#7F7C7E")  # Light blue color for the Calculate button
-    clear_button.config(bg="#ADD8E6", fg="#7F7C7E")  # Light blue color for the Clear button
-    root.update()  # Update the GUI to reflect the color changes
+    root.config(bg="#7F7C7E")
+    update_widget_colors("#333333", "white", "white", "#ADD8E6", "#7F7C7E")
 
 def honey_theme():
-    root.config(bg="#EECC64")  # Background color 
-    sum_label.config(bg="#FDEB71", fg="black")  # Adjust sum_label colors
-    first_term_label.config(bg="#FDEB71", fg="black")
-    common_difference_label.config(bg="#FDEB71", fg="black")
-    common_ratio_label.config(bg="#FDEB71", fg="black")
-    num_terms_label.config(bg="#FDEB71", fg="black")
-    arithmetic_radio.config(bg="#FDEB71", fg="black")
-    geometric_radio.config(bg="#FDEB71", fg="black")
-    first_term_entry.config(bg="#FFFCDB", fg="black")  # Light yellow for entry fields
-    common_difference_entry.config(bg="#FFFCDB", fg="black")
-    common_ratio_entry.config(bg="#FFFCDB", fg="black")
-    num_terms_entry.config(bg="#FFFCDB", fg="black")
-    calculate_button.config(bg="#FFB03B", fg="black")  # Warm orange color for the button
-    clear_button.config(bg="#FFB03B", fg="black")  # Warm orange color for the Clear button
-    root.update()  # Update the GUI to reflect the color changes 
+    root.config(bg="#EECC64")
+    update_widget_colors("#FDEB71", "black", "#FFFCDB", "#FFB03B", "black")
 
 def chestnut_theme():
-    root.config(bg="#5E4420")  # Background color 
-    sum_label.config(bg="#5E4420", fg="white")  # Adjust sum_label colors
-    first_term_label.config(bg="#5E4420", fg="white")
-    common_difference_label.config(bg="#5E4420", fg="white")
-    common_ratio_label.config(bg="#5E4420", fg="white")
-    num_terms_label.config(bg="#5E4420", fg="white")
-    arithmetic_radio.config(bg="#5E4420", fg="white")
-    geometric_radio.config(bg="#5E4420", fg="white")
-    first_term_entry.config(bg="#8D6D49", fg="black")  # Darker brown for entry fields
-    common_difference_entry.config(bg="#8D6D49", fg="black")
-    common_ratio_entry.config(bg="#8D6D49", fg="black")
-    num_terms_entry.config(bg="#8D6D49", fg="black")
-    calculate_button.config(bg="#C98E3F", fg="white")  # Warm gold color for the button
-    clear_button.config(bg="#C98E3F", fg="white")  # Warm gold color for the Clear button
-    root.update()  # Update the GUI to reflect the color changes
+    root.config(bg="#5E4420")
+    update_widget_colors("#5E4420", "white", "#8D6D49", "#C98E3F", "white")
 
 def light_theme():
-    root.config(bg="white")  # White background color
-    sum_label.config(bg="white", fg="black")  # Adjust sum_label colors
-    first_term_label.config(bg="white", fg="black")
-    common_difference_label.config(bg="white", fg="black")
-    common_ratio_label.config(bg="white", fg="black")
-    num_terms_label.config(bg="white", fg="black")
-    arithmetic_radio.config(bg="white", fg="black")
-    geometric_radio.config(bg="white", fg="black")
-    first_term_entry.config(bg="white", fg="black")  # Black text on white background for entry fields
-    common_difference_entry.config(bg="white", fg="black")
-    common_ratio_entry.config(bg="white", fg="black")
-    num_terms_entry.config(bg="white", fg="black")
-    calculate_button.config(bg="black", fg="white")  # Black button with white text
-    clear_button.config(bg="black", fg="white")  # Black button with white text
-    root.update()  # Update the GUI to reflect the color changes
-
+    root.config(bg="white")
+    update_widget_colors("white", "black", "white", "black", "white")
 
 
 
@@ -214,23 +125,15 @@ def light_theme():
 
 Themes_menu = Menu(my_menu) 
 my_menu.add_cascade(label="Themes", menu = Themes_menu) 
-Themes_menu.add_command(label="Dark") 
-Themes_menu.add_separator()  
-Themes_menu.add_command(label="Light") 
-Themes_menu.add_separator()  
-Themes_menu.add_command(label="Chestnut") 
-Themes_menu.add_separator() 
-Themes_menu.add_command(label="Navy")  
-Themes_menu.add_separator()
-Themes_menu.add_command(label="Beige")   
-Themes_menu.add_separator()  
-Themes_menu.add_command(label="Burgundy") 
-Themes_menu.add_separator() 
-Themes_menu.add_command(label="Light Aqua") 
-Themes_menu.add_separator()  
-Themes_menu.add_command(label="Botanical") 
-Themes_menu.add_separator()  
-Themes_menu.add_command(label="Honey")
+Themes_menu.add_command(label="Dark", command =dark_theme) 
+Themes_menu.add_command(label="Light", command = light_theme) 
+Themes_menu.add_command(label="Chestnut", command = chestnut_theme ) 
+Themes_menu.add_command(label="Navy", command = navy_theme)  
+Themes_menu.add_command(label="Beige", command = beige_theme)
+Themes_menu.add_command(label="Burgundy", command = burgundy_theme) 
+Themes_menu.add_command(label="Light Aqua", command = light_aqua_theme) 
+Themes_menu.add_command(label="Botanical", command = botanical_theme) 
+Themes_menu.add_command(label="Honey", command = honey_theme)
 
 
 
@@ -238,21 +141,10 @@ Themes_menu.add_command(label="Honey")
 # Font Change Function
 def set_font(new_font, new_font_size):
     font_tuple = (new_font, new_font_size)
+    for widget in root.winfo_children():
+        widget.config(font=font_tuple)
+    root.update()
 
-    # Update all the widgets with the new font
-    label1.config(font=font_tuple)
-    button_Lessons.config(font=font_tuple)
-    button_Quiz.config(font=font_tuple)
-    button_triangles.config(font=font_tuple)
-    # num_terms_label.config(font=font_tuple)
-    # arithmetic_radio.config(font=font_tuple)
-    # geometric_radio.config(font=font_tuple)
-    # first_term_entry.config(font=font_tuple)
-    # common_difference_entry.config(font=font_tuple)
-    # common_ratio_entry.config(font=font_tuple)
-    # num_terms_entry.config(font=font_tuple)
-    # calculate_button.config(font=font_tuple)
-    # clear_button.config(font=font_tuple)
 
 
 def zoom_in():
@@ -277,6 +169,7 @@ Fonts_menu.add_command(label="Courier New", command=lambda: set_font("Courier Ne
 Fonts_menu.add_command(label="Verdana", command=lambda: set_font("Verdana", current_font_size))
 Fonts_menu.add_command(label="Georgia", command=lambda: set_font("Georgia", current_font_size))
 
+
 # Zoom Menu (Changes the GUI Zoom Level)
 Zoom_menu = Menu(my_menu)
 my_menu.add_cascade(label="Zoom", menu=Zoom_menu)
@@ -284,20 +177,10 @@ Zoom_menu.add_command(label="Zoom In", command=zoom_in)
 Zoom_menu.add_command(label="Zoom Out", command=zoom_out) 
 
 
+
 # Initialize the current font size and font name
 current_font_size = 55
 current_font = "Arial" 
-
-
-
-
-
-
-
-
-
-
-
 
 
 

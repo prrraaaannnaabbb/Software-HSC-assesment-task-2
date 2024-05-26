@@ -20,6 +20,8 @@ def show_question():
     next_btn.config(state="disabled") 
 
 
+
+
 # Function to check the selected answer and provide feedback
 def check_answer(choice):
     # Get the current question from the quiz_data list
