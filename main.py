@@ -347,8 +347,6 @@ def quads_lesson_info():
 
 
 
-
-
 def Polygons_lesson_info(): 
     pass 
 
@@ -356,7 +354,6 @@ def non_Polygons_lesson_info():
     pass
                     
                
-
 
 
 
@@ -428,7 +425,7 @@ def tab_Quiz_menu():
     backb2.grid(column=0, row =0, columnspan = 4)  
 
 
-    
+
 
 
 #Quiz 1 exam page
@@ -442,7 +439,7 @@ def tabquiz1():
         def __init__(Quiz, root):
             Quiz.root = root
             Quiz.root.title("Quiz Application")
-            Quiz.root.geometry("600x400")
+            Quiz.root.geometry("600x600")
             Quiz.root.configure(bg="#F7F7F7")
 
             Quiz.current_question = 0
@@ -477,7 +474,6 @@ def tabquiz1():
 
         ]
 
-
             Quiz.create_widgets()
 
         def create_widgets(Quiz):
@@ -487,10 +483,32 @@ def tabquiz1():
             Quiz.option_vars = []
             Quiz.option_buttons = []
 
+
             for _ in range(4):
                 var = StringVar()
-             
+                button = Radiobutton(Quiz.root, text="", variable=var, value="", font=("Arial", 14), bg="#F7F7F7", wraplength=500, indicatoron=False)
+                Quiz.option_vars.append(var)
+                Quiz.option_buttons.append(button)
+                button.pack(fill=X, padx=20, pady=5)
 
+            Quiz.submit_button = Button(Quiz.root, text="Submit", command=Quiz.check_answer, font=("Arial", 14), bg="#4CAF50", fg="white", relief=FLAT)
+            Quiz.submit_button.pack(pady=20)
+
+            Quiz.feedback_label = Label(Quiz.root, text="", font=("Arial", 14), bg="#F7F7F7")
+            Quiz.feedback_label.pack(pady=10)
+
+            Quiz.show_question(
+
+            Quiz.current_question += 1
+
+            if Quiz.current_question < len(Quiz.questions):
+                Quiz.root.after(2000, Quiz.show_question)
+            else:
+                Quiz.root.after(2000, Quiz.show_result)
+
+        def show_result(Quiz):
+            messagebox.showinfo("Quiz Completed", f"Your score is: {Quiz.score}/{len(Quiz.questions)}")
+            Quiz.root.destroy()
 
     if __name__ == "__main__":
         root = Tk()
@@ -498,8 +516,6 @@ def tabquiz1():
 
     
     
-
-
 
 
 #main menu
