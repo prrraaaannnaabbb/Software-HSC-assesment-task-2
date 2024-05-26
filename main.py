@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import customtkinter
 from ttkbootstrap.scrolled import ScrolledFrame
 from Triangles_data1 import Triangles1
@@ -13,16 +14,18 @@ from Square_data2 import Square2
 customtkinter.set_appearance_mode("light")
 root = customtkinter.CTk() 
 
-app_width = 600 
-app_height = 600
+# app_width = 600 
+# app_height = 600
 
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
+# screen_width = root.winfo_screenwidth()
+# screen_height = root.winfo_screenheight()
 
-x = (screen_width / 2) - (app_width / 2)
-y = (screen_height / 2) - (app_height / 2)
+# x = (screen_width / 2) - (app_width / 2)
+# y = (screen_height / 2) - (app_height / 2)
 
-root.geometry(f'{app_width}x{app_height}+{int(x)}+{int(y)}')
+
+
+# root.geometry(f'{app_width}x{app_height}+{int(x)}+{int(y)}')
 
 root.title("SDD Task 2")
 root.geometry("600x600")
@@ -149,12 +152,12 @@ def set_font(new_font, new_font_size):
 
 def zoom_in():
     global current_font_size
-    current_font_size += 1
+    current_font_size += 2
     set_font(current_font, current_font_size)
 
 def zoom_out():
     global current_font_size
-    current_font_size = max(current_font_size - 1, 1)
+    current_font_size = max(current_font_size - 2, 1)
     set_font(current_font, current_font_size)
 
 
@@ -168,6 +171,7 @@ Fonts_menu.add_command(label="Times New Roman", command=lambda: set_font("Times 
 Fonts_menu.add_command(label="Courier New", command=lambda: set_font("Courier New", current_font_size))
 Fonts_menu.add_command(label="Verdana", command=lambda: set_font("Verdana", current_font_size))
 Fonts_menu.add_command(label="Georgia", command=lambda: set_font("Georgia", current_font_size))
+
 
 
 # Zoom Menu (Changes the GUI Zoom Level)
@@ -191,13 +195,13 @@ current_font = "Arial"
 #Main menu widgets
 def tab_main_menu_widgets():
     global label1, button_Quiz, button_Lessons
-    label1 = Label(root, text="Recognizing shapes", font=("Arial", 60))
+    label1 = Label(root, text="Recognizing shapes", font=("Arial", 50))
     label1.grid(column=3, row=0, columnspan = 12)    
 
-    button_Lessons = Button(root, text="Lessons", font=("Arial", 40),command = tab_Lesson_menu ) 
+    button_Lessons = Button(root, text="Lessons", font=("Arial", 25),command = tab_Lesson_menu ) 
     button_Lessons.grid(column=5, row =2, columnspan= 4)  
            
-    button_Quiz = Button(root, text="Quiz!", font=("Arial", 40), command=tab_Quiz_menu) 
+    button_Quiz = Button(root, text="Quiz!", font=("Arial", 25), command=tab_Quiz_menu) 
     button_Quiz.grid(column=9, row=2, columnspan = 4)   
 
 
@@ -206,7 +210,7 @@ def tab_main_menu_widgets():
 
 #Trangles lesson part2 
 def Triangle_info_part_2(): 
-             global Triangle_text_frame2, button_previousinfo_triangles
+             global Triangle_text_frame2, button_previousinfo_triangles, Info_label2
              Triangle_text_frame.destroy()
              label_placeholder1.destroy()
 
@@ -216,7 +220,7 @@ def Triangle_info_part_2():
              Triangle_text_frame2 = ScrolledFrame(root, height=700, width=800) 
              Triangle_text_frame2.grid(row=4, column=3, columnspan = 12, rowspan =10) 
 
-             Info_label2 = Label(Triangle_text_frame2, text = Triangles2 , font=("Arial", 25), wraplength=770)
+             Info_label2 = Label(Triangle_text_frame2, text = Triangles2 , font=("Arial", 30), wraplength=770)
              Info_label2.grid(row=0, column=0)  
              
              def Triangleback(): 
@@ -254,7 +258,7 @@ def Triangle_lesson_info():
        Triangle_text_frame = ScrolledFrame(root, height=700, width=800) 
        Triangle_text_frame.grid(row=4, column=3, columnspan = 12, rowspan =10) 
 
-       Info_label_Triangle = Label(Triangle_text_frame, text = Triangles1 , font=("Arial", 25), wraplength=770)
+       Info_label_Triangle = Label(Triangle_text_frame, text = Triangles1 , font=("Arial", 40), wraplength=770)
        Info_label_Triangle.grid(row=0, column=0)   
 
 
@@ -264,20 +268,14 @@ def Triangle_lesson_info():
        button_nextinfo_triangles.grid(row=3, column=16)  
 
        def back_T_lesson():
-              pass
-            #   Triangle_text_frame.destroy()  
-            #   button_nextinfo_triangles.destroy()   
-            #   button_previousinfo_triangles.destroy()
-            #   exit_lesson_button.destroy()
-            #   tab_Lesson_menu()
+              Triangle_text_frame.destroy()
+
+              tab_Lesson_menu()
 
 
        exit_lesson_button = Button(root, text="Exit", font=("Arial", 25), command=back_T_lesson) 
        exit_lesson_button.grid(column=0, row =0, columnspan = 4)  
         
-
-
-
 
 
 
@@ -294,7 +292,7 @@ def quads_info_part_2():
              Square_text_frame2 = ScrolledFrame(root, height=700, width=800) 
              Square_text_frame2.grid(row=4, column=3, columnspan = 12, rowspan =10) 
 
-             Info_label2 = Label(Square_text_frame2, text = Square2 , font=("Arial", 30), wraplength=770)
+             Info_label2 = Label(Square_text_frame2, text = Square2 , font=("Arial", 40), wraplength=770)
              Info_label2.grid(row=0, column=0)  
              
              def squareback(): 
@@ -330,7 +328,7 @@ def quads_lesson_info():
     Square_text_frame = ScrolledFrame(root, height=700, width=800) 
     Square_text_frame.grid(row=4, column=3, columnspan = 12, rowspan =10) 
 
-    Info_label_Square = Label(Square_text_frame, text = Square1 , font=("Arial", 30), wraplength=770)
+    Info_label_Square = Label(Square_text_frame, text = Square1 , font=("Arial", 40), wraplength=770)
     Info_label_Square.grid(row=0, column=0)   
 
 
@@ -339,28 +337,12 @@ def quads_lesson_info():
     button_nextinfo_quads = Button(root, text=("--->"), font=("Arial", 30), command = quads_info_part_2)
     button_nextinfo_quads.grid(row=3, column=16)  
 
-    def back_T_lesson():
-              pass
-            #   Triangle_text_frame.destroy()  
-            #   button_nextinfo_triangles.destroy()   
-            #   button_previousinfo_triangles.destroy()
-            #   exit_lesson_button.destroy()
-            #   tab_Lesson_menu()
 
 
-    exit_lesson_button = Button(root, text="Exit", font=("Arial", 25), command=back_T_lesson) 
-    exit_lesson_button.grid(column=0, row =0, columnspan = 4)  
+
+    exit_lesson_buttonq = Button(root, text="Exit", font=("Arial", 25)) 
+    exit_lesson_buttonq.grid(column=0, row =0, columnspan = 4)  
         
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -451,32 +433,79 @@ def tab_Quiz_menu():
 
 #Quiz 1 exam page
 def tabquiz1(): 
-    global label_q1page
     label_3rdpage.destroy() 
     backb2.destroy() 
     button_q1.destroy()
-    label_q1page = Label(root, text="Quiz 1!", font =("Arial", 60))
-    label_q1page.grid(column=3, row=0, columnspan = 12) 
-    def back3(): 
-                    label_q1page.destroy() 
-                    backb3.destroy()
-                    tab_Quiz_menu()
+    
 
-    backb3 = Button(root, text="Back", font=("Arial", 25), command = back3) 
-    backb3.grid(column=0, row =0, columnspan = 4)
+    class QuizApp:
+        def __init__(Quiz, root):
+            Quiz.root = root
+            Quiz.root.title("Quiz Application")
+            Quiz.root.geometry("600x400")
+            Quiz.root.configure(bg="#F7F7F7")
+
+            Quiz.current_question = 0
+            Quiz.score = 0
+
+            Quiz.questions = [
+        {
+            "question": "How many degrees in square",
+            "options": ["A", "n", "g", "360"],
+            "answer": "360"
+        },
+        {
+            "question": "How many degrees in triangle",
+            "options": ["yut", "n", "s", "180"],
+            "answer": "180"
+        },
+        {
+            "question": "What a trangle 3 sided",
+            "options": ["8", "9", "g", "yes"],
+            "answer": "yes"
+        },
+        {
+            "question": "Is a square a quadrilateral",
+            "options": ["7", "8", "yes", "11234"],
+            "answer": "yes" 
+        },
+        {
+            "question": "is a circle round",
+            "options": ["7", "8", "yes", "11234"],
+            "answer": "yes" 
+        }
+
+        ]
+
+
+            Quiz.create_widgets()
+
+        def create_widgets(Quiz):
+            Quiz.question_label = Label(Quiz.root, text="", font=("Arial", 16), bg="#F7F7F7", wraplength=500)
+            Quiz.question_label.pack(pady=20)
+
+            Quiz.option_vars = []
+            Quiz.option_buttons = []
+
+            for _ in range(4):
+                var = StringVar()
+             
+
+
+    if __name__ == "__main__":
+        root = Tk()
+        app = QuizApp(root)
 
     
     
+
+
+
+
 #main menu
 def tab_main_menu(): 
     tab_main_menu_widgets()
 tab_main_menu()
-
-
-
-
-
-
 
 
 

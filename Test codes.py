@@ -1,111 +1,102 @@
-from tkinter import *
-import customtkinter
-from Quiz_data import quiz_data
+from tkinter import*
+from tkinter import messagebox
 
-# Setup
-customtkinter.set_appearance_mode("light")
-root = customtkinter.CTk()
+class QuizApp:
+    def __init__(Quiz, root):
+        Quiz.root = root
+        Quiz.root.title("Quiz Application")
+        Quiz.root.geometry("600x400")
+        Quiz.root.configure(bg="#F7F7F7")
 
-root.title("SDD Task 2")
-root.geometry("600x600")
-root.minsize(600, 600)
+        Quiz.current_question = 0
+        Quiz.score = 0
 
+        Quiz.questions = [
+{
+    "question": "How many degrees in square",
+    "options": ["A", "n", "g", "360"],
+    "answer": "360"
+},
+{
+    "question": "How many degrees in triangle",
+    "options": ["yut", "n", "s", "180"],
+    "answer": "180"
+},
+{
+    "question": "What a trangle 3 sided",
+    "options": ["8", "9", "g", "yes"],
+    "answer": "yes"
+},
+{
+    "question": "Is a square a quadrilateral",
+    "options": ["7", "8", "yes", "11234"],
+    "answer": "yes" 
+},
+{
+    "question": "is a circle round",
+    "options": ["7", "8", "yes", "11234"],
+    "answer": "yes" 
+}
 
-#Quiz1
-Quiz1_frame = Frame(root,padx = 10, pady =10,)
-Quiz1_frame.pack(fill = "both", expand = True)
+]
 
+        Quiz.create_widgets()
 
-# Define grid
-root.columnconfigure(list(range(18)), weight=10, uniform="a")
-root.rowconfigure(list(range(18)), weight=10, uniform="a") 
+    def create_widgets(Quiz):
+        Quiz.question_label = Label(Quiz.root, text="", font=("Arial", 16), bg="#F7F7F7", wraplength=500)
+        Quiz.question_label.pack(pady=20)
 
+        Quiz.option_vars = []
+        Quiz.option_buttons = []
 
-#Initalise score and question number
-score = 0 
-currentq =0 
+        for _ in range(4):
+            var = StringVar()
+            button = Radiobutton(Quiz.root, text="", variable=var, value="", font=("Arial", 14), bg="#F7F7F7", wraplength=500, indicatoron=False)
+            Quiz.option_vars.append(var)
+            Quiz.option_buttons.append(button)
+            button.pack(fill=X, padx=20, pady=5)
 
-def Next_question(): 
-    pass
+        Quiz.submit_button = Button(Quiz.root, text="Submit", command=Quiz.check_answer, font=("Arial", 14), bg="#4CAF50", fg="white", relief=FLAT)
+        Quiz.submit_button.pack(pady=20)
 
+        Quiz.feedback_label = Label(Quiz.root, text="", font=("Arial", 14), bg="#F7F7F7")
+        Quiz.feedback_label.pack(pady=10)
 
+        Quiz.show_question()
 
-def answer_check(Anscheck): 
-    pass 
+    def show_question(Quiz):
+        question = Quiz.questions[Quiz.current_question]
+        Quiz.question_label.config(text=question["question"])
 
-def increment_score(): 
-    pass
+        for i, option in enumerate(question["options"]):
+            Quiz.option_buttons[i].config(text=option, variable=Quiz.option_vars[Quiz.current_question], value=option)
+            Quiz.option_vars[Quiz.current_question].set(None)
 
-def diable_buttons(state): 
-    pass
-    # optionA["state"] = state 
-    # optionB["state"] = state        
-    # optionC["state"] = state 
-    # optionD["state"] = state 
+        Quiz.feedback_label.config(text="")
 
+    def check_answer(Quiz):
+        selected_option = Quiz.option_vars[Quiz.current_question].get()
+        correct_answer = Quiz.questions[Quiz.current_question]["answer"]
 
+        if selected_option == correct_answer:
+            Quiz.score += 1
+            Quiz.feedback_label.config(text="Correct!", fg="green")
+        else:
+            Quiz.feedback_label.config(text=f"Wrong! The correct answer was: {correct_answer}", fg="red")
 
-question_label = Label(Quiz1_frame, height=20, width=45, font= ("Arial", 20), bg="grey", wraplength=500)
-question_label.grid(row= 0, column =2)
+        Quiz.current_question += 1
 
+        if Quiz.current_question < len(Quiz.questions):
+            Quiz.root.after(2000, Quiz.show_question)
+        else:
+            Quiz.root.after(2000, Quiz.show_result)
 
+    def show_result(Quiz):
+        messagebox.showinfo("Quiz Completed", f"Your score is: {Quiz.score}/{len(Quiz.questions)}")
+        Quiz.root.destroy()
 
-
-
-
-
-
-optionA = customtkinter.CTkRadioButton(
-    Quiz1_frame,
-    radiobutton_width=15,
-    radiobutton_height= 15,
-    text = quiz_data[currentq],
-    command = answer_check
-                            ) 
-
-optionB = customtkinter.CTkRadioButton(
-    Quiz1_frame,
-    radiobutton_width=15,
-    radiobutton_height= 15,
-    text = quiz_data[currentq],
-    command = answer_check
-                            )
- 
-optionC = customtkinter.CTkRadioButton(
-    Quiz1_frame,
-    radiobutton_width=15,
-    radiobutton_height= 15,
-    text = quiz_data[currentq],
-    command = answer_check
-                            ) 
-
-optionD= customtkinter.CTkRadioButton(
-    Quiz1_frame,
-    radiobutton_width=15,
-    radiobutton_height= 15,
-    text = quiz_data[currentq],
-    command = answer_check
-                            ) 
-
-optionA.grid(sticky="W", row=6, column=1)
-optionB.grid(sticky="W",row=8, column=1)
-optionC.grid(sticky="W",row=10, column=1) 
-optionD.grid(sticky="W",row=12, column=1) 
-
-
-
-
-button_next = Button(Quiz1_frame, text="Next", bg="pink", font=("Arial", 40), command =Next_question) 
-button_next.grid(row=18, column=2) 
-
-
-
-
-
-
-
-
-
-
-root.mainloop 
+if __name__ == "__main__":
+    root = Tk()
+    app = QuizApp(root)
+    root.mainloop()  
 
