@@ -1,18 +1,15 @@
 from tkinter import *
-from tkinter import messagebox
 import customtkinter
 from ttkbootstrap.scrolled import ScrolledFrame
+from Triangles_data1 import Triangles1
+from Triangles_data2 import Triangles2
+from Square_data1 import Square1
+from Square_data2 import Square2
 
 
 # Setup
 customtkinter.set_appearance_mode("light")
 root = customtkinter.CTk()
-
-Triangles1 = "The equilateral triangle is characterized by its noticeable equal sides. Since all three sides are equal, their internal angles are all 60 degrees which still adds up to 180 when you do 60 times 3. 180 is the angle sum of a triangle all types of triangles add up to 180 degrees."
-Triangles2 = "Pythagoras' theorem is a squared plus b squared = c squared. This is a very important formula in mathematics as it dictates a right-angled triangle."
-
-Square1 = "In Euclidean geometry, a square is a regular quadrilateral, which means that it has four sides of equal length and four equal angles (90-degree angles, π/2 radian angles, or right angles). It can also be defined as a rectangle with two equal-length adjacent sides. It is the only regular polygon whose internal angle, central angle, and external angle are all equal (90°), and whose diagonals are all equal in length."
-Square2 = "A square is a special case of a rhombus (equal sides, opposite equal angles), a kite (two pairs of adjacent equal sides), a trapezoid (one pair of opposite sides parallel), a parallelogram (all opposite sides parallel), a quadrilateral or tetragon (four-sided polygon), and a rectangle (opposite sides equal, right-angles), and therefore has all the properties of all these shapes."
 
 
 
@@ -34,115 +31,126 @@ root.minsize(600, 600)
 root.columnconfigure(list(range(18)), weight=10, uniform="a")
 root.rowconfigure(list(range(12)), weight=10, uniform="a")
 
-# Inclusivity features
-def update_widget_colors(bg, fg, entry_bg, button_bg, button_fg):
-    for widget in root.winfo_children():
-        if isinstance(widget, Label):
-            widget.config(bg=bg, fg=fg)
-        elif isinstance(widget, Entry):
-            widget.config(bg=entry_bg, fg=fg)
-        elif isinstance(widget, Button):
-            widget.config(bg=button_bg, fg=button_fg)
-        elif isinstance(widget, ScrolledFrame):
-            for subwidget in widget.winfo_children():
-                subwidget.config(bg=bg, fg=fg)
-    root.update()
 
-# Theme Change Functions
-def beige_theme():
-    root.config(bg="#F5E0C0")
-    update_widget_colors("#F5E0C0", "black", "#D9CCA2", "#BEEEA0", "black")
 
-def navy_theme():
-    root.config(bg="#2C3E50")
-    update_widget_colors("#2C3E50", "white", "#34495E", "#E74C3C", "white")
 
-def burgundy_theme():
-    root.config(bg="#800020")
-    update_widget_colors("#672F25", "white", "grey", "#c4a747", "black")
+def inclusivity_features():
+    # Inclusivity features
+    def update_widget_colors(bg, fg, entry_bg, button_bg, button_fg):
+        for widget in root.winfo_children():
+            if isinstance(widget, Label):
+                widget.config(bg=bg, fg=fg)
+            elif isinstance(widget, Entry):
+                widget.config(bg=entry_bg, fg=fg)
+            elif isinstance(widget, Button):
+                widget.config(bg=button_bg, fg=button_fg)
+            elif isinstance(widget, ScrolledFrame):
+                for subwidget in widget.winfo_children():
+                    subwidget.config(bg=bg, fg=fg)
+        root.update()
 
-def light_aqua_theme():
-    root.config(bg="#A2C4C9")
-    update_widget_colors("#A2C4C9", "black", "grey", "#8FCACF", "black")
 
-def botanical_theme():
-    root.config(bg="#446725")
-    update_widget_colors("#D0E2C8", "black", "#F2F7EF", "#D198C0", "#4F2743")
+    # Theme Change Functions
+    def beige_theme():
+        root.config(bg="#F5E0C0")
+        update_widget_colors("#F5E0C0", "black", "#D9CCA2", "#BEEEA0", "black")
 
-def dark_theme():
-    root.config(bg="#7F7C7E")
-    update_widget_colors("#333333", "white", "white", "#ADD8E6", "#7F7C7E")
+    def navy_theme():
+        root.config(bg="#2C3E50")
+        update_widget_colors("#2C3E50", "white", "#34495E", "#E74C3C", "white")
 
-def honey_theme():
-    root.config(bg="#EECC64")
-    update_widget_colors("#FDEB71", "black", "#FFFCDB", "#FFB03B", "black")
+    def burgundy_theme():
+        root.config(bg="#800020")
+        update_widget_colors("#672F25", "white", "grey", "#c4a747", "black")
 
-def chestnut_theme():
-    root.config(bg="#5E4420")
-    update_widget_colors("#5E4420", "white", "#8D6D49", "#C98E3F", "white")
+    def light_aqua_theme():
+        root.config(bg="#A2C4C9")
+        update_widget_colors("#A2C4C9", "black", "grey", "#8FCACF", "black")
 
-def light_theme():
-    root.config(bg="white")
-    update_widget_colors("white", "black", "white", "black", "white")
+    def botanical_theme():
+        root.config(bg="#446725")
+        update_widget_colors("#D0E2C8", "black", "#F2F7EF", "#D198C0", "#4F2743")
 
-# Menu Bar Options (Inclusivity Features)
-my_menu = Menu(root)
-root.config(menu=my_menu)
+    def dark_theme():
+        root.config(bg="#7F7C7E")
+        update_widget_colors("#333333", "white", "white", "#ADD8E6", "#7F7C7E")
 
-# File Menu Item (Quits the program)
-file_menu = Menu(my_menu)
-my_menu.add_cascade(label="Options", menu=file_menu)
-file_menu.add_command(label="Exit", command=root.quit)
+    def honey_theme():
+        root.config(bg="#EECC64")
+        update_widget_colors("#FDEB71", "black", "#FFFCDB", "#FFB03B", "black")
 
-# Themes Menu
-Themes_menu = Menu(my_menu)
-my_menu.add_cascade(label="Themes", menu=Themes_menu)
-Themes_menu.add_command(label="Dark", command=dark_theme)
-Themes_menu.add_command(label="Light", command=light_theme)
-Themes_menu.add_command(label="Chestnut", command=chestnut_theme)
-Themes_menu.add_command(label="Navy", command=navy_theme)
-Themes_menu.add_command(label="Beige", command=beige_theme)
-Themes_menu.add_command(label="Burgundy", command=burgundy_theme)
-Themes_menu.add_command(label="Light Aqua", command=light_aqua_theme)
-Themes_menu.add_command(label="Botanical", command=botanical_theme)
-Themes_menu.add_command(label="Honey", command=honey_theme)
+    def chestnut_theme():
+        root.config(bg="#5E4420")
+        update_widget_colors("#5E4420", "white", "#8D6D49", "#C98E3F", "white")
 
-# Font Change Function
-def set_font(new_font, new_font_size):
-    font_tuple = (new_font, new_font_size)
-    for widget in root.winfo_children():
-        widget.config(font=font_tuple)
-    root.update()
+    def light_theme():
+        root.config(bg="white")
+        update_widget_colors("white", "black", "white", "black", "white")
 
-def zoom_in():
-    global current_font_size
-    current_font_size += 2
-    set_font(current_font, current_font_size)
 
-def zoom_out():
-    global current_font_size
-    current_font_size = max(current_font_size - 2, 1)
-    set_font(current_font, current_font_size)
+    # Menu Bar Options (Inclusivity Features)
+    my_menu = Menu(root)
+    root.config(menu=my_menu)
 
-# Fonts Menu
-Fonts_menu = Menu(my_menu)
-my_menu.add_cascade(label="Fonts", menu=Fonts_menu)
-Fonts_menu.add_command(label="Helvetica", command=lambda: set_font("Helvetica", current_font_size))
-Fonts_menu.add_command(label="Arial", command=lambda: set_font("Arial", current_font_size))
-Fonts_menu.add_command(label="Times New Roman", command=lambda: set_font("Times New Roman", current_font_size))
-Fonts_menu.add_command(label="Courier New", command=lambda: set_font("Courier New", current_font_size))
-Fonts_menu.add_command(label="Verdana", command=lambda: set_font("Verdana", current_font_size))
-Fonts_menu.add_command(label="Georgia", command=lambda: set_font("Georgia", current_font_size))
+    # File Menu Item (Quits the program)
+    file_menu = Menu(my_menu)
+    my_menu.add_cascade(label="Options", menu=file_menu)
+    file_menu.add_command(label="Exit", command=root.quit)
 
-# Zoom Menu
-Zoom_menu = Menu(my_menu)
-my_menu.add_cascade(label="Zoom", menu=Zoom_menu)
-Zoom_menu.add_command(label="Zoom In", command=zoom_in)
-Zoom_menu.add_command(label="Zoom Out", command=zoom_out)
+    # Themes Menu
+    Themes_menu = Menu(my_menu)
+    my_menu.add_cascade(label="Themes", menu=Themes_menu)
+    Themes_menu.add_command(label="Dark", command=dark_theme)
+    Themes_menu.add_command(label="Light", command=light_theme)
+    Themes_menu.add_command(label="Chestnut", command=chestnut_theme)
+    Themes_menu.add_command(label="Navy", command=navy_theme)
+    Themes_menu.add_command(label="Beige", command=beige_theme)
+    Themes_menu.add_command(label="Burgundy", command=burgundy_theme)
+    Themes_menu.add_command(label="Light Aqua", command=light_aqua_theme)
+    Themes_menu.add_command(label="Botanical", command=botanical_theme)
+    Themes_menu.add_command(label="Honey", command=honey_theme)
 
-# Initialize the current font size and font name
-current_font_size = 20
-current_font = "Arial"
+
+    # Font Change Function
+    def set_font(new_font, new_font_size):
+        font_tuple = (new_font, new_font_size)
+        for widget in root.winfo_children():
+            widget.config(font=font_tuple)
+        root.update()
+
+    def zoom_in():
+        global current_font_size
+        current_font_size += 2
+        set_font(current_font, current_font_size)
+
+    def zoom_out():
+        global current_font_size
+        current_font_size = max(current_font_size - 2, 1)
+        set_font(current_font, current_font_size)
+
+    # Fonts Menu
+    Fonts_menu = Menu(my_menu)
+    my_menu.add_cascade(label="Fonts", menu=Fonts_menu)
+    Fonts_menu.add_command(label="Helvetica", command=lambda: set_font("Helvetica", current_font_size))
+    Fonts_menu.add_command(label="Arial", command=lambda: set_font("Arial", current_font_size))
+    Fonts_menu.add_command(label="Times New Roman", command=lambda: set_font("Times New Roman", current_font_size))
+    Fonts_menu.add_command(label="Courier New", command=lambda: set_font("Courier New", current_font_size))
+    Fonts_menu.add_command(label="Verdana", command=lambda: set_font("Verdana", current_font_size))
+    Fonts_menu.add_command(label="Georgia", command=lambda: set_font("Georgia", current_font_size))
+
+    # Zoom Menu
+    Zoom_menu = Menu(my_menu)
+    my_menu.add_cascade(label="Zoom", menu=Zoom_menu)
+    Zoom_menu.add_command(label="Zoom In", command=zoom_in)
+    Zoom_menu.add_command(label="Zoom Out", command=zoom_out)
+
+    # Initialize the current font size and font name
+    current_font_size = 20
+    current_font = "Arial"
+inclusivity_features()
+
+
+
 
 # Main menu widgets
 def tab_main_menu_widgets():
@@ -156,11 +164,16 @@ def tab_main_menu_widgets():
     button_Quiz = Button(root, text="Quiz!", font=("Arial", 25), command=tab_Quiz_menu)
     button_Quiz.grid(column=9, row=2, columnspan=4)
 
+
+
+
 # Triangles lesson part 2
 def Triangle_info_part_2():
     global Triangle_text_frame2, button_previousinfo_triangles, label_placeholder2
-    Triangle_text_frame.destroy()
-    label_placeholder1.destroy()
+    for widget in root.winfo_children():
+        widget.destroy() 
+
+    inclusivity_features()
 
     label_placeholder2 = Label(root, text="Isosceles Triangle", font=("Arial", 50))
     label_placeholder2.grid(row=2, column=3, columnspan=12)
@@ -172,23 +185,23 @@ def Triangle_info_part_2():
     Info_label2.grid(row=0, column=0)
 
     def Triangleback():
-        button_previousinfo_triangles.destroy()
-        Triangle_text_frame2.destroy()
-        label_placeholder2.destroy()
+        for widget in root.winfo_children():
+            widget.destroy()
         Triangle_lesson_info()
 
     button_previousinfo_triangles = Button(root, text="<---", font=("Arial", 30), command=Triangleback)
     button_previousinfo_triangles.grid(row=3, column=1)
 
+
+
+
 # Triangles lesson
 def Triangle_lesson_info():
     global Triangle_text_frame, label_placeholder1
-    label_2.destroy()
-    button_triangles.destroy()
-    button_non_polygon.destroy()
-    button_quads.destroy()
-    button_polygons.destroy()
-    backb1.destroy()
+    for widget in root.winfo_children():
+        widget.destroy()
+
+    inclusivity_features()
 
     label_placeholder1 = Label(root, text="Equilateral Triangle", font=("Arial", 50))
     label_placeholder1.grid(row=2, column=3, columnspan=12)
@@ -203,19 +216,23 @@ def Triangle_lesson_info():
     button_nextinfo_triangles.grid(row=3, column=16)
 
     def back_to_shape_menu():
-        Triangle_text_frame.destroy()
-        label_placeholder1.destroy()
-        button_nextinfo_triangles.destroy()
+        for widget in root.winfo_children():
+            widget.destroy()
         Shapes_menu()
 
-    button_previousinfo_triangles = Button(root, text="<---", font=("Arial", 30), command=back_to_shape_menu)
-    button_previousinfo_triangles.grid(row=3, column=1)
+    button_back_shapes = Button(root, text="Back", font=("Arial", 30), command=back_to_shape_menu)
+    button_back_shapes.grid(row=2, column=1, columnspan=2)
+
+
+
 
 # Quads lesson part 2
 def Quad_info_part_2():
     global Quad_text_frame2, button_previousinfo_quads, label_placeholder4
-    Quad_text_frame.destroy()
-    label_placeholder3.destroy()
+    for widget in root.winfo_children():
+        widget.destroy()
+
+    inclusivity_features()
 
     label_placeholder4 = Label(root, text="Rectangle", font=("Arial", 50))
     label_placeholder4.grid(row=2, column=3, columnspan=12)
@@ -227,23 +244,22 @@ def Quad_info_part_2():
     Info_label2.grid(row=0, column=0)
 
     def Quadback():
-        button_previousinfo_quads.destroy()
-        Quad_text_frame2.destroy()
-        label_placeholder4.destroy()
+      for widget in root.winfo_children():
+        widget.destroy()
         Quad_lesson_info()
 
     button_previousinfo_quads = Button(root, text="<---", font=("Arial", 30), command=Quadback)
     button_previousinfo_quads.grid(row=3, column=1)
 
+
+
 # Quads lesson
 def Quad_lesson_info():
     global Quad_text_frame, label_placeholder3
-    label_2.destroy()
-    button_triangles.destroy()
-    button_non_polygon.destroy()
-    button_quads.destroy()
-    button_polygons.destroy()
-    backb1.destroy()
+    for widget in root.winfo_children():
+        widget.destroy()
+
+    inclusivity_features()
 
     label_placeholder3 = Label(root, text="Square", font=("Arial", 50))
     label_placeholder3.grid(row=2, column=3, columnspan=12)
@@ -258,23 +274,26 @@ def Quad_lesson_info():
     button_nextinfo_quads.grid(row=3, column=16)
 
     def back_to_shape_menu():
-        Quad_text_frame.destroy()
-        label_placeholder3.destroy()
-        button_nextinfo_quads.destroy()
-        Shapes_menu()
+        for widget in root.winfo_children():
+            widget.destroy()
+            Shapes_menu()
 
-    button_previousinfo_quads = Button(root, text="<---", font=("Arial", 30), command=back_to_shape_menu)
-    button_previousinfo_quads.grid(row=3, column=1)
+    button_back_quads = Button(root, text="Back", font=("Arial", 30), command=back_to_shape_menu)
+    button_back_quads.grid(row=2, column=1, columnspan=2)
+
+
+
 
 # Shapes menu
 def Shapes_menu():
-    global label_2, button_triangles, button_quads, button_non_polygon, button_polygons, backb1
-    label1.destroy()
-    button_Quiz.destroy()
-    button_Lessons.destroy()
+    global label_shapes_page, button_triangles, button_quads, button_non_polygon, button_polygons, backb1
+    for widget in root.winfo_children():
+        widget.destroy()
+    
+    inclusivity_features()
 
-    label_2 = Label(root, text="Shapes Lessons", font=("Arial", 50))
-    label_2.grid(column=3, row=0, columnspan=12)
+    label_shapes_page = Label(root, text="Shapes Lessons", font=("Arial", 50))
+    label_shapes_page.grid(column=2, row=0, columnspan=12)
 
     button_triangles = Button(root, text="Triangles", font=("Arial", 25), command=Triangle_lesson_info)
     button_triangles.grid(row=2, column=3, columnspan=3)
@@ -289,20 +308,22 @@ def Shapes_menu():
     button_non_polygon.grid(row=2, column=12, columnspan=3)
 
     def back_to_main():
-        label_2.destroy()
-        button_triangles.destroy()
-        button_quads.destroy()
-        button_polygons.destroy()
-        button_non_polygon.destroy()
-        backb1.destroy()
+        for widget in root.winfo_children():
+            widget.destroy()
+        inclusivity_features()
         tab_main_menu_widgets()
 
-    backb1 = Button(root, text="<---", font=("Arial", 30), command=back_to_main)
-    backb1.grid(row=3, column=1)
+    backb1 = Button(root, text="back", font=("Arial", 30), command=back_to_main)
+    backb1.grid(row=1, column=1, columnspan=2)
+
+
+
+
 
 # Quiz class
 class QuizApp:
     def __init__(Quiz, root):
+        inclusivity_features()
         Quiz.root = root
         Quiz.question_index = 0
         Quiz.score = 0
@@ -374,7 +395,10 @@ class QuizApp:
     def back_to_main(Quiz):
         for widget in Quiz.root.winfo_children():
             widget.destroy()
+        inclusivity_features()
         tab_main_menu_widgets()
+
+
 
 
 def tab_Lesson_menu():
@@ -382,14 +406,23 @@ def tab_Lesson_menu():
         widget.destroy()
     Shapes_menu()
 
+
 def tab_Quiz_menu():
     for widget in root.winfo_children():
         widget.destroy()
     quiz_app = QuizApp(root)
 
+
+
+
 tab_main_menu_widgets()
 
-root.mainloop()
+root.mainloop() 
+
+
+
+
+
 
 
 
