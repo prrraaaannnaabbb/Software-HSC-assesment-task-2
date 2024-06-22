@@ -283,10 +283,19 @@ def Quad_lesson_info():
 
 
 
+def polygon_lesson_info():
+    pass
+
+
+def non_polygon_lesson_info(): 
+    pass
+
+
+
 
 # Shapes menu
 def Shapes_menu():
-    global label_shapes_page, button_triangles, button_quads, button_non_polygon, button_polygons, backb1
+    global label_shapes_page, button_triangles, button_quads, button_non_polygon, button_polygon, backb1
     for widget in root.winfo_children():
         widget.destroy()
     
@@ -301,8 +310,8 @@ def Shapes_menu():
     button_quads = Button(root, text="Quadrilateral", font=("Arial", 25), command=Quad_lesson_info)
     button_quads.grid(row=2, column=6, columnspan=3)
 
-    button_polygons = Button(root, text="Polygons", font=("Arial", 25))
-    button_polygons.grid(row=2, column=9, columnspan=3)
+    button_polygon = Button(root, text="Polygons", font=("Arial", 25))
+    button_polygon.grid(row=2, column=9, columnspan=3)
 
     button_non_polygon = Button(root, text="Non-Polygon", font=("Arial", 25))
     button_non_polygon.grid(row=2, column=12, columnspan=3)
