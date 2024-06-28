@@ -1,0 +1,5 @@
+nonpoly1="Non-polygons refer to geometric figures that do not meet the criteria of polygons, typically because they do not consist of straight sides or do not close to form a distinct shape. These shapes can include curves, such as circles and ellipses, which lack straight sides altogether. Circles are defined as the set of all points equidistant from a central point, forming a perfectly round shape with no straight sides or angles. Ellipses, on the other hand, are elongated circles formed by the intersection of a cone with a plane at an angle, characterized by their curved boundaries and two focal points. Other examples of non-polygons include curves like parabolas and hyperbolas, which are defined by mathematical functions rather than a fixed number of sides and angles. Non-polygons are essential in mathematics and physics for their unique properties and applications, often modeling natural phenomena or complex mathematical relationships beyond the confines of straight-sided polygons"
+
+
+
+

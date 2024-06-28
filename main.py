@@ -1,16 +1,21 @@
 from tkinter import *
 import customtkinter
 from ttkbootstrap.scrolled import ScrolledFrame
+from PIL import ImageTk, Image
 from Triangles_data1 import Triangles1
 from Triangles_data2 import Triangles2
 from Square_data1 import Square1
 from Square_data2 import Square2
+from polygon_data1 import polygon1
+from polygon_data2 import polygon2
+from non_polygon_data1 import nonpoly1 
+from non_polygon_data2 import nonpoly2 
+
 
 
 # Setup
 customtkinter.set_appearance_mode("light")
 root = customtkinter.CTk()
-
 
 
 app_width = 600
@@ -33,8 +38,7 @@ root.rowconfigure(list(range(12)), weight=10, uniform="a")
 
 
 
-
-def inclusivity_features():
+def inclusivity_features(): 
     # Inclusivity features
     def update_widget_colors(bg, fg, entry_bg, button_bg, button_fg):
         for widget in root.winfo_children():
@@ -86,7 +90,7 @@ def inclusivity_features():
     def light_theme():
         root.config(bg="white")
         update_widget_colors("white", "black", "white", "black", "white")
-
+        
 
     # Menu Bar Options (Inclusivity Features)
     my_menu = Menu(root)
@@ -118,14 +122,16 @@ def inclusivity_features():
             widget.config(font=font_tuple)
         root.update()
 
+
     def zoom_in():
         global current_font_size
-        current_font_size += 2
+        current_font_size = 35
+        current_font_size += 20
         set_font(current_font, current_font_size)
 
     def zoom_out():
         global current_font_size
-        current_font_size = max(current_font_size - 2, 1)
+        current_font_size = max(current_font_size - 10, 1)
         set_font(current_font, current_font_size)
 
     # Fonts Menu
@@ -145,7 +151,7 @@ def inclusivity_features():
     Zoom_menu.add_command(label="Zoom Out", command=zoom_out)
 
     # Initialize the current font size and font name
-    current_font_size = 20
+    current_font_size = 35
     current_font = "Arial"
 inclusivity_features()
 
@@ -162,36 +168,43 @@ def tab_main_menu_widgets():
     button_Lessons.grid(column=5, row=2, columnspan=4)
 
     button_Quiz = Button(root, text="Quiz!", font=("Arial", 25), command=tab_Quiz_menu)
-    button_Quiz.grid(column=9, row=2, columnspan=4)
+    button_Quiz.grid(column=9, row=2, columnspan=4) 
 
 
 
 
-# Triangles lesson part 2
-def Triangle_info_part_2():
-    global Triangle_text_frame2, button_previousinfo_triangles, label_placeholder2
+# Shapes menu
+def Shapes_menu():
+    
+    global label_shapes_page, button_triangles, button_quads, button_non_polygon, button_polygon, backb1
     for widget in root.winfo_children():
-        widget.destroy() 
-
+        widget.destroy()
+    
     inclusivity_features()
 
-    label_placeholder2 = Label(root, text="Isosceles Triangle", font=("Arial", 50))
-    label_placeholder2.grid(row=2, column=3, columnspan=12)
+    label_shapes_page = Label(root, text="Lessons", font=("Arial", 50))
+    label_shapes_page.grid(column=2, row=0, columnspan=13)
 
-    Triangle_text_frame2 = ScrolledFrame(root, height=700, width=800)
-    Triangle_text_frame2.grid(row=4, column=3, columnspan=12, rowspan=10)
+    button_triangles = Button(root, text="Triangles", font=("Arial", 25), command=Triangle_lesson_info)
+    button_triangles.grid(row=3, column=4, columnspan=3)
 
-    Info_label2 = Label(Triangle_text_frame2, text=Triangles2, font=("Arial", 25), wraplength=770)
-    Info_label2.grid(row=0, column=0)
+    button_quads = Button(root, text="Quadrilateral", font=("Arial", 25), command=Quad_lesson_info)
+    button_quads.grid(row=3, column=9, columnspan=3)
 
-    def Triangleback():
+    button_polygon = Button(root, text="Polygons", font=("Arial", 25), command =polygon_lesson_info)
+    button_polygon.grid(row=5, column=4, columnspan=3)
+
+    button_non_polygon = Button(root, text="Non-Polygon", font=("Arial", 25), command=non_polygon_lesson_info)
+    button_non_polygon.grid(row=5, column=9, columnspan=3)
+
+    def back_to_main():
         for widget in root.winfo_children():
             widget.destroy()
-        Triangle_lesson_info()
+        inclusivity_features()
+        tab_main_menu_widgets()
 
-    button_previousinfo_triangles = Button(root, text="<---", font=("Arial", 30), command=Triangleback)
-    button_previousinfo_triangles.grid(row=3, column=1)
-
+    backb1 = Button(root, text="back", font=("Arial", 30), command=back_to_main)
+    backb1.grid(row=1, column=1, columnspan=2)
 
 
 
@@ -203,8 +216,9 @@ def Triangle_lesson_info():
 
     inclusivity_features()
 
-    label_placeholder1 = Label(root, text="Equilateral Triangle", font=("Arial", 50))
+    label_placeholder1 = Label(root, text="Triangles", font=("Arial", 50))
     label_placeholder1.grid(row=2, column=3, columnspan=12)
+
 
     Triangle_text_frame = ScrolledFrame(root, height=700, width=800)
     Triangle_text_frame.grid(row=4, column=3, columnspan=12, rowspan=10)
@@ -225,6 +239,61 @@ def Triangle_lesson_info():
 
 
 
+# Triangles lesson part 2
+def Triangle_info_part_2():
+    global Triangle_text_frame2, button_previousinfo_triangles, label_placeholder2
+    for widget in root.winfo_children():
+        widget.destroy() 
+
+    inclusivity_features()
+
+    label_placeholder2 = Label(root, text="Triangles", font=("Arial", 50))
+    label_placeholder2.grid(row=2, column=3, columnspan=12)
+
+    Triangle_text_frame2 = ScrolledFrame(root, height=700, width=800)
+    Triangle_text_frame2.grid(row=4, column=3, columnspan=12, rowspan=10)
+
+    Info_label2 = Label(Triangle_text_frame2, text=Triangles2, font=("Arial", 25), wraplength=770)
+    Info_label2.grid(row=0, column=0)
+
+    def Triangleback():
+        for widget in root.winfo_children():
+            widget.destroy()
+        Triangle_lesson_info()
+
+    button_previousinfo_triangles = Button(root, text="<---", font=("Arial", 30), command=Triangleback)
+    button_previousinfo_triangles.grid(row=3, column=1)
+
+
+
+# Quads lesson
+def Quad_lesson_info():
+    global Quad_text_frame, label_placeholder3
+    for widget in root.winfo_children():
+        widget.destroy()
+
+    inclusivity_features()
+
+    label_placeholder3 = Label(root, text="Quadrilaterals", font=("Arial", 50))
+    label_placeholder3.grid(row=2, column=3, columnspan=12)
+
+    Quad_text_frame = ScrolledFrame(root, height=700, width=800)
+    Quad_text_frame.grid(row=4, column=3, columnspan=12, rowspan=10)
+
+    Info_label_Quad = Label(Quad_text_frame, text=Square1, font=("Arial", 25), wraplength=770)
+    Info_label_Quad.grid(row=0, column=0)
+
+    button_nextinfo_quads = Button(root, text="--->", font=("Arial", 30), command=Quad_info_part_2)
+    button_nextinfo_quads.grid(row=3, column=16)
+
+    def back_to_shape_menu():
+        for widget in root.winfo_children():
+            widget.destroy()
+            Shapes_menu()
+
+    button_back_quads = Button(root, text="Back", font=("Arial", 30), command=back_to_shape_menu)
+    button_back_quads.grid(row=2, column=1, columnspan=2) 
+
 
 # Quads lesson part 2
 def Quad_info_part_2():
@@ -234,7 +303,7 @@ def Quad_info_part_2():
 
     inclusivity_features()
 
-    label_placeholder4 = Label(root, text="Rectangle", font=("Arial", 50))
+    label_placeholder4 = Label(root, text="Quadrilaterals", font=("Arial", 50))
     label_placeholder4.grid(row=2, column=3, columnspan=12)
 
     Quad_text_frame2 = ScrolledFrame(root, height=700, width=800)
@@ -253,83 +322,116 @@ def Quad_info_part_2():
 
 
 
-# Quads lesson
-def Quad_lesson_info():
-    global Quad_text_frame, label_placeholder3
+def polygon_lesson_info():
+    global polygon_text_frame, label_placeholder4
     for widget in root.winfo_children():
         widget.destroy()
 
     inclusivity_features()
 
-    label_placeholder3 = Label(root, text="Square", font=("Arial", 50))
-    label_placeholder3.grid(row=2, column=3, columnspan=12)
+    label_placeholder4 = Label(root, text="Polygons", font=("Arial", 50))
+    label_placeholder4.grid(row=2, column=3, columnspan=12)
 
-    Quad_text_frame = ScrolledFrame(root, height=700, width=800)
-    Quad_text_frame.grid(row=4, column=3, columnspan=12, rowspan=10)
+    polygon_text_frame = ScrolledFrame(root, height=700, width=800)
+    polygon_text_frame.grid(row=4, column=3, columnspan=12, rowspan=10)
 
-    Info_label_Quad = Label(Quad_text_frame, text=Square1, font=("Arial", 25), wraplength=770)
-    Info_label_Quad.grid(row=0, column=0)
+    Info_label_polygon = Label(polygon_text_frame, text=polygon1, font=("Arial", 25), wraplength=770)
+    Info_label_polygon.grid(row=0, column=0)
 
-    button_nextinfo_quads = Button(root, text="--->", font=("Arial", 30), command=Quad_info_part_2)
-    button_nextinfo_quads.grid(row=3, column=16)
+    button_nextinfo_polygon = Button(root, text="--->", font=("Arial", 30), command=polygon_info_part_2)
+    button_nextinfo_polygon.grid(row=3, column=16)
 
     def back_to_shape_menu():
         for widget in root.winfo_children():
             widget.destroy()
             Shapes_menu()
 
-    button_back_quads = Button(root, text="Back", font=("Arial", 30), command=back_to_shape_menu)
-    button_back_quads.grid(row=2, column=1, columnspan=2)
+    button_back_polygon = Button(root, text="Back", font=("Arial", 30), command=back_to_shape_menu)
+    button_back_polygon.grid(row=2, column=1, columnspan=2)
 
 
 
-def polygon_lesson_info():
-    pass
+def polygon_info_part_2():
+    global polygon_text_frame2, button_previousinfo_polygons, label_placeholder5
+    for widget in root.winfo_children():
+        widget.destroy()
+
+    inclusivity_features()
+
+    label_placeholder5 = Label(root, text="Polygons", font=("Arial", 50))
+    label_placeholder5.grid(row=2, column=3, columnspan=12)
+
+    polygon_text_frame2 = ScrolledFrame(root, height=700, width=800)
+    polygon_text_frame2.grid(row=4, column=3, columnspan=12, rowspan=10)
+
+    Info_label5 = Label(polygon_text_frame2, text=polygon2, font=("Arial", 25), wraplength=770)
+    Info_label5.grid(row=0, column=0)
+
+    def polygonback():
+      for widget in root.winfo_children():
+        widget.destroy()
+        polygon_lesson_info()
+
+    button_previousinfo_polygons = Button(root, text="<---", font=("Arial", 30), command=polygonback)
+    button_previousinfo_polygons.grid(row=3, column=1)    
+
 
 
 def non_polygon_lesson_info(): 
-    pass
-
-
-
-
-# Shapes menu
-def Shapes_menu():
-    global label_shapes_page, button_triangles, button_quads, button_non_polygon, button_polygon, backb1
+    global non_polygon_text_frame, label_placeholder6
     for widget in root.winfo_children():
         widget.destroy()
-    
+
     inclusivity_features()
 
-    label_shapes_page = Label(root, text="Shapes Lessons", font=("Arial", 50))
-    label_shapes_page.grid(column=2, row=0, columnspan=12)
+    label_placeholder6 = Label(root, text="Non-polygons", font=("Arial", 50))
+    label_placeholder6.grid(row=2, column=3, columnspan=12)
 
-    button_triangles = Button(root, text="Triangles", font=("Arial", 25), command=Triangle_lesson_info)
-    button_triangles.grid(row=2, column=3, columnspan=3)
+    non_polygon_text_frame = ScrolledFrame(root, height=700, width=800)
+    non_polygon_text_frame.grid(row=4, column=3, columnspan=12, rowspan=10)
 
-    button_quads = Button(root, text="Quadrilateral", font=("Arial", 25), command=Quad_lesson_info)
-    button_quads.grid(row=2, column=6, columnspan=3)
+    Info_label_non_polygon = Label(non_polygon_text_frame, text=nonpoly1, font=("Arial", 25), wraplength=770)
+    Info_label_non_polygon.grid(row=0, column=0)
 
-    button_polygon = Button(root, text="Polygons", font=("Arial", 25))
-    button_polygon.grid(row=2, column=9, columnspan=3)
+    button_nextinfo_polygon = Button(root, text="--->", font=("Arial", 30), command=non_polygon_lesson_info2)
+    button_nextinfo_polygon.grid(row=3, column=16)
 
-    button_non_polygon = Button(root, text="Non-Polygon", font=("Arial", 25))
-    button_non_polygon.grid(row=2, column=12, columnspan=3)
-
-    def back_to_main():
+    def non_poly_back():
         for widget in root.winfo_children():
             widget.destroy()
-        inclusivity_features()
-        tab_main_menu_widgets()
+            Shapes_menu()
 
-    backb1 = Button(root, text="back", font=("Arial", 30), command=back_to_main)
-    backb1.grid(row=1, column=1, columnspan=2)
-
+    button_back_non_polygon = Button(root, text="Back", font=("Arial", 30), command=non_poly_back)
+    button_back_non_polygon.grid(row=2, column=1, columnspan=2)
 
 
 
+def non_polygon_lesson_info2(): 
+    global non_polygon_text_frame2, button_previousinfo_non_polygons, label_placeholder7
+    for widget in root.winfo_children():
+        widget.destroy()
 
-# Quiz class
+    inclusivity_features()
+
+    label_placeholder7 = Label(root, text="Non-polygons", font=("Arial", 50))
+    label_placeholder7.grid(row=2, column=3, columnspan=12)
+
+    non_polygon_text_frame2 = ScrolledFrame(root, height=700, width=800)
+    non_polygon_text_frame2.grid(row=4, column=3, columnspan=12, rowspan=10)
+
+    Info_label7 = Label(non_polygon_text_frame2, text=nonpoly2, font=("Arial", 25), wraplength=770)
+    Info_label7.grid(row=0, column=0)
+
+    def polygonback():
+        for widget in root.winfo_children():
+            widget.destroy()
+        polygon_lesson_info()
+
+    button_previousinfo_non_polygons = Button(root, text="<---", font=("Arial", 30), command=polygonback)
+    button_previousinfo_non_polygons.grid(row=3, column=1)    
+
+
+# Quiz code
 class QuizApp:
     def __init__(Quiz, root):
         inclusivity_features()
@@ -341,15 +443,42 @@ class QuizApp:
             "Which shape has three sides?",
             "Which shape has four equal sides?",
             "Which shape has five sides?",
+            "Which triangles has only 2 equal sides?", 
+            "what shape would have no straight lines but is 360 degrees?", 
+            "Which shape is a polygon?", 
+            "What is a non-polygon?",
+            "Which shape is a non-polygon?", 
+            "I am a shape that is enclosed with 3 straight defined as?",
+            "Which shape is a Quadrilteral?"
+        
         ]
 
         Quiz.options = [
             ["Square", "Triangle", "Pentagon", "Circle"],
-            ["Rectangle", "Square", "Triangle", "Pentagon"],
+            ["Square", "Circle", "Triangle", "Pentagon"],
             ["Triangle", "Square", "Pentagon", "Hexagon"],
+            ["Scalene","Equilateral", "isosceles", "Rectangle"], 
+            ["Square", "Decagon", "Circle", "Hexagon"], 
+            ["Rectangle","Square", "Triangle", "All of the above"],
+            [ "A four sided shape", "A three sided shape", "A shape that does not satisfy the criteria of a polygon","A shape the has 360 degrees with atleast 5 straight lines"],
+            ["Rhombus", "Circle", "Triangle", "Polygon"],  
+            ["Triangle", "Pentagon", "Oval", "Kite"], 
+            ["Kite", "Rectangle", "Square", "All of the above"]
+
         ]
 
-        Quiz.correct_answers = ["Triangle", "Square", "Pentagon"]
+        Quiz.correct_answers = [
+            "Triangle",
+            "Square", 
+            "Pentagon",
+            "isosceles", 
+            "Circle",
+            "All of the above",
+            "A shape that does not satisfy the criteria of a polygon",
+            "Circle",
+            "Triangle",
+            "All of the above"
+            ]
 
         Quiz.setup_quiz_ui()
 
@@ -369,8 +498,18 @@ class QuizApp:
             radio_btn.grid(row=4 + i, column=3, columnspan=12, sticky=W)
             Quiz.radio_buttons.append(radio_btn)
 
-        Quiz.button_next = Button(Quiz.root, text="Next", font=("Arial", 20), command=Quiz.next_question)
-        Quiz.button_next.grid(row=8, column=10)
+        Quiz.button_next = Button(Quiz.root, text="Next", font=("Arial", 25), command=Quiz.next_question)
+        Quiz.button_next.grid(row=5, column=12, columnspan = 2)
+
+        Quiz.Exit_button =  Button(Quiz.root, text="Exit", font=("Arial", 25), command=Quiz.Exit) 
+        Quiz.Exit_button.grid(row=1, column=1, columnspan=2) 
+
+    def Exit(Quiz):
+        for widget in Quiz.root.winfo_children():
+            widget.destroy()
+        inclusivity_features()
+        tab_main_menu_widgets()
+
 
     def next_question(Quiz):
         if Quiz.var_option.get() == Quiz.correct_answers[Quiz.question_index]:
@@ -401,12 +540,6 @@ class QuizApp:
         Quiz.button_back = Button(Quiz.root, text="<---", font=("Arial", 30), command=Quiz.back_to_main)
         Quiz.button_back.grid(row=3, column=1)
 
-    def back_to_main(Quiz):
-        for widget in Quiz.root.winfo_children():
-            widget.destroy()
-        inclusivity_features()
-        tab_main_menu_widgets()
-
 
 
 
@@ -420,8 +553,6 @@ def tab_Quiz_menu():
     for widget in root.winfo_children():
         widget.destroy()
     quiz_app = QuizApp(root)
-
-
 
 
 tab_main_menu_widgets()
